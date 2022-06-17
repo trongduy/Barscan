@@ -1,0 +1,27 @@
+1// nếu có thay đổi api_provider.dart thì run comment line để update api_provider.g.dart
+- export PATH="/Users/vohoangtuit/DATA/DEVELOP/AndroidStudio/flutter_sdk/flutter/bin:$PATH" // change path
+- export PATH="/Users/admin/VO_HOANG_TU/dev/AndroidStudio/sdk/flutter/bin:$PATH"
+- flutter pub run build_runner build // todo api
+- flutter packages pub run build_runner build // todo floor db
+
+todo update file pub
+> flutter clean
+> flutter pub get
+> cd ios
+> pod update || pod install // todo if error run:  'pod deintegrate' before
+
+// pass open url default = 12512032018
+// url default http://113.161.222.192:8686
+
+
+// ftp://113.161.222.192:2122/File_Scan/
+//
+// username:ftpuser
+//
+// password:Logitem@2020
+
+// ftp://113.161.222.192:2122/test/
+//
+// ftpandroid
+//
+// Logitem2022

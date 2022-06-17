@@ -1,0 +1,4 @@
+
+pass: barcode2022
+alias: barcode
+
