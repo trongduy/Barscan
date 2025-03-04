@@ -10,15 +10,16 @@
         <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../../../AndroidStudio/flutter_sdk/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.20.1/android" />
-            <option value="$PROJECT_DIR$/../../../AndroidStudio/flutter_sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_barcode_scanner-2.0.0/android" />
-            <option value="$PROJECT_DIR$/../../../AndroidStudio/flutter_sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.6/android" />
-            <option value="$PROJECT_DIR$/../../../AndroidStudio/flutter_sdk/flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.9/android" />
-            <option value="$PROJECT_DIR$/../../../AndroidStudio/flutter_sdk/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.14/android" />
-            <option value="$PROJECT_DIR$/../../../AndroidStudio/flutter_sdk/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_android-9.0.2+1/android" />
-            <option value="$PROJECT_DIR$/../../../AndroidStudio/flutter_sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.12/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.20.1/android" />
+            <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_barcode_scanner-2.0.0/android" />
+            <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_keyboard_visibility-5.2.0/android" />
+            <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.6/android" />
+            <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.9/android" />
+            <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.14/android" />
+            <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_android-9.0.2+1/android" />
+            <option value="$PROJECT_DIR$/../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.12/android" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

@@ -4,13 +4,14 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1696903871/android.audioplayers.iml" filepath="$PROJECT_DIR$/.idea/modules/1696903871/android.audioplayers.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1702226444/android.flutter_barcode_scanner.iml" filepath="$PROJECT_DIR$/.idea/modules/-1702226444/android.flutter_barcode_scanner.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/746438388/android.fluttertoast.iml" filepath="$PROJECT_DIR$/.idea/modules/746438388/android.fluttertoast.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/115501331/android.permission_handler_android.iml" filepath="$PROJECT_DIR$/.idea/modules/115501331/android.permission_handler_android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1437247639/android.shared_preferences_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1437247639/android.shared_preferences_android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-148515663/io.flutter.plugins.flutter_plugin_android_lifecycle.android.flutter_plugin_android_lifecycle.iml" filepath="$PROJECT_DIR$/.idea/modules/-148515663/io.flutter.plugins.flutter_plugin_android_lifecycle.android.flutter_plugin_android_lifecycle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1746453280/io.flutter.plugins.pathprovider.android.path_provider_android.iml" filepath="$PROJECT_DIR$/.idea/modules/1746453280/io.flutter.plugins.pathprovider.android.path_provider_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-840348795/android.flutter_keyboard_visibility.iml" filepath="$PROJECT_DIR$/.idea/modules/-840348795/android.flutter_keyboard_visibility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/626389168/android.flutter_plugin_android_lifecycle.iml" filepath="$PROJECT_DIR$/.idea/modules/626389168/android.flutter_plugin_android_lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-513998369/android.path_provider_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-513998369/android.path_provider_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1238216469/com.amolg.flutterbarcodescanner.android.flutter_barcode_scanner.iml" filepath="$PROJECT_DIR$/.idea/modules/1238216469/com.amolg.flutterbarcodescanner.android.flutter_barcode_scanner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1220125550/com.baseflow.permissionhandler.android.permission_handler_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1220125550/com.baseflow.permissionhandler.android.permission_handler_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-362901389/com.example.FlutterToast.android.fluttertoast.iml" filepath="$PROJECT_DIR$/.idea/modules/-362901389/com.example.FlutterToast.android.fluttertoast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1844803594/io.flutter.plugins.sharedpreferences.android.shared_preferences_android.iml" filepath="$PROJECT_DIR$/.idea/modules/1844803594/io.flutter.plugins.sharedpreferences.android.shared_preferences_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1667109152/xyz.luan.audioplayers.android.audioplayers.iml" filepath="$PROJECT_DIR$/.idea/modules/1667109152/xyz.luan.audioplayers.android.audioplayers.iml" />
     </modules>
   </component>
 </project>
