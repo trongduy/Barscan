@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "D:\\Source\\CongViec\\Barscan\\build\\fluttertoast\\intermediates\\merged_res\\release\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\065da5db9c9cad184b6c9d82193e78a3\\transformed\\core-1.6.0\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\Source\\CongViec\\Barscan\\build\\fluttertoast\\intermediates\\merged_res\\release\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\065da5db9c9cad184b6c9d82193e78a3\\transformed\\core-1.6.0\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\Source\\CongViec\\Barscan\\build\\fluttertoast\\intermediates\\merged_res\\release\\layout\\notification_action.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\065da5db9c9cad184b6c9d82193e78a3\\transformed\\core-1.6.0\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\Source\\CongViec\\Barscan\\build\\fluttertoast\\intermediates\\merged_res\\release\\layout\\custom_dialog.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\065da5db9c9cad184b6c9d82193e78a3\\transformed\\core-1.6.0\\res\\layout\\custom_dialog.xml"
+    },
+    {
+        "merged": "D:\\Source\\CongViec\\Barscan\\build\\fluttertoast\\intermediates\\merged_res\\release\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\065da5db9c9cad184b6c9d82193e78a3\\transformed\\core-1.6.0\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\Source\\CongViec\\Barscan\\build\\fluttertoast\\intermediates\\merged_res\\release\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\065da5db9c9cad184b6c9d82193e78a3\\transformed\\core-1.6.0\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\Source\\CongViec\\Barscan\\build\\fluttertoast\\intermediates\\merged_res\\release\\layout\\toast_custom.xml",
+        "source": "D:\\Source\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\fluttertoast-8.0.9\\android\\src\\main\\res\\layout\\toast_custom.xml"
+    }
+]

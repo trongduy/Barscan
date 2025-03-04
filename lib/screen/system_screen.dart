@@ -231,7 +231,7 @@ Widget _viewInput(){
   }
 
   _getConfig() async {
-    await client?.getConfig().then((value) => {
+    await client?.getConfig("android").then((value) => {
           if (value.isNotEmpty)
             {
               setState(() {

@@ -41,6 +41,21 @@ class RestClient{
     screen!.showLoading(false);
     return success;
   }
+
+  Future<ResponseModel?> deleteAllFileInFolder(String foldername) async {
+    ResponseModel? response;
+    screen!.showLoading(true);
+    try {
+      var data = await network.deleteAllFileInFolder(foldername);
+      response =data;
+    } on DioError catch(dioError){
+      screen!.showLoading(false);
+      screen!.showMessage('Lỗi kết nối');
+    }
+    screen!.showLoading(false);
+    return response;
+  }
+
   Future<ResponseModel?> checkPassword(String password) async {
     ResponseModel? response;
     screen!.showLoading(true);
@@ -56,11 +71,11 @@ class RestClient{
     screen!.showLoading(false);
     return response;
   }
-  Future<List<ConfigModel>> getConfig() async {
+  Future<List<ConfigModel>> getConfig(String keyConfig) async {
     screen?.showLoading(true);
     List<ConfigModel> listConfig =<ConfigModel>[];
     try {
-      var data = await network.getConfigDetail();
+      var data = await network.getConfigDetail(keyConfig);
       if(data.response!=null){
         listConfig =ConfigModel().listFromJson(data);
       }

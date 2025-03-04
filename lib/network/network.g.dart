@@ -52,9 +52,9 @@ class _Network implements Network {
   }
 
   @override
-  Future<ResponseModel> getConfigDetail() async {
+  Future<ResponseModel> getConfigDetail(keyconfig) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'keyConfig': keyconfig};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -66,6 +66,24 @@ class _Network implements Network {
     final value = ResponseModel.fromJson(_result.data!);
     return value;
   }
+
+
+  @override
+  Future<ResponseModel> deleteAllFileInFolder(foldername) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'folderName': foldername};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ResponseModel>(
+            Options(method: 'DELETE', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/api/Menu/DeleteAllFileInFolder',
+                queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseModel.fromJson(_result.data!);
+    return value;
+  }
+
 
   @override
   Future<ResponseModel> getSoundError() async {

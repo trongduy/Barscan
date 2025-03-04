@@ -29,7 +29,10 @@ abstract class Network{
   Future<ResponseModel> checkPassword(@Query('Password') String password);
 
   @GET('/api/Menu/GetConfigDetail')
-  Future<ResponseModel> getConfigDetail();
+  Future<ResponseModel> getConfigDetail(@Query('keyConfig') String keyconfig);
+
+  @DELETE('/api/Menu/DeleteAllFileInFolder')
+  Future<ResponseModel> deleteAllFileInFolder(@Query('folderName') String foldername);
 
   @GET('/api/Sound/GetSoundError')
   Future<ResponseModel> getSoundError();

@@ -9,9 +9,11 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:input_with_keyboard_control/input_with_keyboard_control.dart';
 import '../helper/file/file_manager.dart';
 import '../models/bar_code_model.dart';
+import '../models/product_model.dart';
 import '../network/request/post_model.dart';
 import '../widgets/widget.dart';
 import 'general_screen.dart';
+import 'dialog_quantity.dart';
 
 class NewScanScreen extends StatefulWidget {
   const NewScanScreen();
@@ -24,21 +26,29 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
   List<BarCodeModel> list = <BarCodeModel>[];
   List<PostModel> listPost = <PostModel>[];
 
+
 //  List<DataPost> data = <DataPost>[];
   DataPost data = DataPost();
   BarCodeModel? newScan;
   String? nameFile = '';
-
+  ProductModel?productItem=ProductModel(productId: '',quantity: 0);
   bool isUpload = false;
 
   FileManager fileManager = FileManager();
   final ScrollController _scrollController = ScrollController();
 
+
+
+  final productCodeController = TextEditingController();
+  final productCodeFocusNode = InputWithKeyboardControlFocusNode();
+
+  final quantityController=TextEditingController();
+  final quantityFocusNode = InputWithKeyboardControlFocusNode();
+
   final codeController = TextEditingController();
   final codeFocusNode = InputWithKeyboardControlFocusNode();
 
   final serialController = TextEditingController();
-
   final serialFocusNode = InputWithKeyboardControlFocusNode();
 
   final nameFileController = TextEditingController();
@@ -79,7 +89,15 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
       onWillPop: _onWillPop,
       child: GestureDetector(
         onTap: () {
-          if (codeController.text.isEmpty) {
+          if(productCodeController.text.isEmpty) {
+            productCodeFocusNode.unfocus();
+            productCodeFocusNode.requestFocus();
+          }
+          else if ((quantityController.text.isEmpty || quantityController.text.trim()=="0") && productCodeController.text.isNotEmpty) {
+            quantityFocusNode.unfocus();
+            quantityFocusNode.requestFocus();
+          }
+         else if (codeController.text.isEmpty && productCodeController.text.isNotEmpty) {
             codeFocusNode.unfocus();
             codeFocusNode.requestFocus();
           } else if (serialController.text.isEmpty) {
@@ -123,18 +141,81 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
         Padding(
           padding: const EdgeInsets.only(left: 20, top: 10, right: 20),
           child: Row(
+              children: [
+              text('Mã EAN: '),
+              Expanded(
+                child: SizedBox(
+                  height: 35,
+                  child: InputWithKeyboardControl(
+                    focusNode: productCodeFocusNode,
+                    onSubmitted: (value) {
+                      if(value.isNotEmpty)
+                      {
+                        focusQuantity();
+                      }
+                      // DialogQuantity(context: context).dialogQuantity((amount){
+                      //   _checkQuantity(amount);
+                      // },);
+                    },
+                    autofocus: true,
+                    controller: productCodeController,
+                    width: 250,
+                    startShowKeyboard: false,
+                    buttonColorEnabled: Colors.blue,
+                    buttonColorDisabled: Colors.black,
+                    underlineColor: Colors.black,
+                    showUnderline: true,
+                    showButton: true,
+                  ),
+                ),
+              ),
+               SizedBox(
+                 height: 35,
+                 width: 60,
+                 child: TextField(
+                   focusNode:quantityFocusNode,
+                   decoration:InputDecoration(
+                     border: OutlineInputBorder(),
+                     labelText: 'SL',
+                   ),
+                   controller: quantityController,
+                   keyboardType: TextInputType.number,
+                   // validator: (val) {
+                   //   //return int.parse(val.toString()) <=0 ? null : 'Vui lòng nhập số lượng';
+                   // },
+                     onSubmitted:(value) async{
+                      if(value.isNotEmpty)
+                      {
+                        if(int.parse(value)>0)
+                        {
+                          _checkQuantity(value.toString());
+                        }
+                      }
+                   }
+                 ),
+               )
+            ],
+
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Row(
             children: [
-              text('Mã hàng: '),
+              text('Mã Code: '),
               Expanded(
                 child: SizedBox(
                   height: 35,
                   child: InputWithKeyboardControl(
                     focusNode: codeFocusNode,
                     onSubmitted: (value) {
-                      if(value.isNotEmpty){
+                      if(value.isNotEmpty ){
                         focusSerial();
                       }
-
                     },
                     autofocus: true,
                     controller: codeController,
@@ -151,9 +232,13 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
             ],
           ),
         ),
-        const SizedBox(
-          height: 10,
+        Text(
+            ShowTitleQuantity()
         ),
+        const SizedBox(
+          height: 5,
+        ),
+
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
@@ -172,7 +257,6 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
                       if(value.isNotEmpty){
                         _checkList();
                       }
-
                     },
                     autofocus: true,
                     controller: serialController,
@@ -295,15 +379,15 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
           );
   }
   _listener() async{
-    codeController.addListener(() {
-      log('keyboardShowing $keyboardShowing');
 
+    codeController.addListener(() {
       if(!keyboardShowing){
         if(codeController.text.isNotEmpty){
           focusSerial();
         }
       }
     });
+
     serialController.addListener(() {
       log('keyboardShowing $keyboardShowing');
       if(!keyboardShowing){
@@ -316,8 +400,8 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
 
   _checkList(){
     showLoading(true);
-    String code = codeController.text;
-    String serial = serialController.text;
+    String code = codeController.text.trim();
+    String serial = serialController.text.trim();
     if(code.compareTo(serial)==0){
       showMessage('Mã hàng và Serial trùng nhau');
       focusSerial();
@@ -327,16 +411,21 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
     }
     newScan!.customerCode = code;
     newScan!.serial = serial;
-    for (var item in list) {
-      if(code.compareTo(item.customerCode!)==0&&serial.compareTo(item.serial!)==0){
-        showMessage('Mã tồn tại');
-        focusSerial();
-        playSoundError();
-        showLoading(false);
-        return;
+
+    int count=countProductId();
+    if(count != productItem!.quantity)
+    {
+      for (var item in list) {
+        if(code.compareTo(item.customerCode!)==0&&serial.toUpperCase().compareTo(item.serial?.trim().toUpperCase() ?? "")==0){
+          showMessage('Mã tồn tại');
+          focusSerial();
+          playSoundError();
+          showLoading(false);
+          return;
+        }
       }
+        _updateList();
     }
-    _updateList();
   }
   _updateList() async{
       setState(() {
@@ -368,35 +457,119 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
       _newScan();
     });
   }
-  focusCode()async{
-    codeController.text = '';
-    codeFocusNode.requestFocus();
-    // await Future.delayed(const Duration(milliseconds: 1300), () {
-    //   codeFocusNode.requestFocus();
-    // });
+
+  focusQuantity()async{
+    if(productCodeController.text.isNotEmpty) {
+      quantityController.text = '';
+      _unQuantity();
+      await Future.delayed(const Duration(milliseconds: 1), () {
+        quantityFocusNode.requestFocus();
+      });
+    }
+
+
   }
+
+  _unQuantity()async{
+    if(quantityFocusNode.hasFocus){
+      quantityFocusNode.unfocus();
+    }
+  }
+
+
+
+  focusMaHang()async{
+    if(productCodeController.text.isNotEmpty && quantityController.text.isNotEmpty)
+    {
+      if(quantityController.text.trim()!='0')
+      {
+        codeController.text='';
+        await  _unMaHang();
+        await Future.delayed(const Duration(milliseconds: 300), () {
+          FocusScope.of(context).requestFocus(codeFocusNode);
+        });
+      }
+
+    }
+  }
+
+  _unMaHang()async{
+    if(codeFocusNode.hasFocus){
+      codeFocusNode.unfocus();
+    }
+  }
+
   focusSerial()async{
-    serialController.text='';
-    await  _unSerial();
-    await Future.delayed(const Duration(milliseconds: 300), () {
-    //  serialFocusNode.requestFocus();
-      FocusScope.of(context).requestFocus(serialFocusNode);
-    });
+    if((productItem!.productId?.trim().toUpperCase() ?? "") != codeController.text.trim().toUpperCase())
+    {
+      focusMaHang();
+      showMessage('Mã hàng không tồn tại');
+    }
+    else
+    {
+      serialController.text='';
+      await  _unSerial();
+      await Future.delayed(const Duration(milliseconds: 300), () {
+        //  serialFocusNode.requestFocus();
+        FocusScope.of(context).requestFocus(serialFocusNode);
+      });
+    }
   }
+
+
   _unSerial()async{
     if(serialFocusNode.hasFocus){
       serialFocusNode.unfocus();
     }
   }
   _newScan()async{
-    codeController.text='';
+    // nếu chưa có dòng dữ liệu nào hoặc là dòng dữ liệu đó đã đủ thì mới reset
+    int count=countProductId();
+    if(count==0 || count==productItem!.quantity) {
+      productCodeController.text = '';
+      productCodeFocusNode.unfocus();
+    }
+    else if(productItem!.quantity! > 0)
+    {
+      codeController.text='';
       codeFocusNode.unfocus();
-    serialController.text = '';
-    serialFocusNode.unfocus();
+      serialController.text = '';
+      serialFocusNode.unfocus();
+    }
+   else
+   {
+     quantityController.text='';
+     quantityFocusNode.requestFocus();
+   }
+
     await Future.delayed(const Duration(seconds: 1), () {
-      codeFocusNode.requestFocus();
+      productCodeFocusNode.requestFocus();
+      if(count==0 || count==productItem!.quantity) {
+        productCodeFocusNode.requestFocus();
+        if(count==productItem!.quantity && count!=0){
+          playSoundError();
+          showMessage('Mã hàng ${productItem!.productId} đã đủ số lượng');
+          //reset
+          codeController.text='';
+          serialController.text = '';
+          quantityController.text='';
+          productCodeFocusNode.requestFocus();
+          productItem=ProductModel(productId: '',quantity: 0);
+        }
+      }
+      else if(productItem!.quantity! > 0)
+      {
+        codeFocusNode.requestFocus();
+      }
+      else
+      {
+        quantityController.text='';
+        quantityFocusNode.requestFocus();
+      }
     });
   }
+
+
   _resetList() {
     setState(() {
       nameFile = '';
@@ -488,7 +661,7 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
           context: context,
           builder: (context) => AlertDialog(
             title: const Text('Thông báo'),
-            content: const Text('Bạn có muốn thoát màng hình Scan không ?'),
+            content: const Text('Bạn có muốn thoát màn hình Scan không ?'),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
@@ -527,5 +700,50 @@ class _NewScanScreenState extends GeneralScreen<NewScanScreen> {
           ),
         )) ??
         false;
+  }
+  int countProductId(){
+    int count = list.where((c) => c.customerCode == productCodeController.text).length;
+    return count;
+ }
+
+  String ShowTitleQuantity()
+  {
+     String strResult="";
+     int count=countProductId();
+     if(productItem!.quantity!>0)
+     {
+       if(productItem!.quantity!=count && productItem!.quantity !=0 && productCodeController.text.trim().isNotEmpty)
+       {
+         strResult="Số lương: "+count.toString()+"/"+productItem!.quantity.toString();
+       }
+     }
+     return strResult;
+  }
+
+  _checkQuantity(String amount)async{
+    // todo pass default: 12512032018
+    print('hello');
+    if(amount==""){
+      showMessage('Vui lòng nhập số lượng');
+    }
+    else{
+      if(productCodeController.text.isNotEmpty){
+        int count = countProductId();
+        if(count>0 && count>=int.parse(amount))
+        {
+          showMessage('Đã đủ số lượng');
+          productCodeController.text='';
+          quantityController.text='';
+           productCodeFocusNode.requestFocus();
+        }
+        else
+        {
+          setState(() {
+            productItem=ProductModel(productId: productCodeController.text,quantity: int.parse(amount));
+          });
+          focusMaHang();
+        }
+      }
+    }
   }
 }

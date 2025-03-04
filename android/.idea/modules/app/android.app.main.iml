@@ -114,14 +114,14 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="io.flutter.plugins.sharedpreferences.android.shared_preferences_android.main" />
-    <orderEntry type="module" module-name="com.baseflow.permissionhandler.android.permission_handler_android.main" />
-    <orderEntry type="module" module-name="xyz.luan.audioplayers.android.audioplayers.main" />
+    <orderEntry type="module" module-name="io.flutter.plugins.sharedpreferences.android.shared_preferences_android.main~1" />
+    <orderEntry type="module" module-name="com.baseflow.permissionhandler.android.permission_handler_android.main~1" />
+    <orderEntry type="module" module-name="xyz.luan.audioplayers.android.audioplayers.main~1" />
     <orderEntry type="module" module-name="android.flutter_plugin_android_lifecycle.main" />
     <orderEntry type="module" module-name="android.flutter_keyboard_visibility.main" />
-    <orderEntry type="module" module-name="com.example.FlutterToast.android.fluttertoast.main" />
+    <orderEntry type="module" module-name="com.example.FlutterToast.android.fluttertoast.main~1" />
     <orderEntry type="module" module-name="android.path_provider_android.main" />
-    <orderEntry type="module" module-name="com.amolg.flutterbarcodescanner.android.flutter_barcode_scanner.main" />
+    <orderEntry type="module" module-name="com.amolg.flutterbarcodescanner.android.flutter_barcode_scanner.main~1" />
     <orderEntry type="library" name="Gradle: D./Source/CongViec/Barscan/build/app/intermediates/flutter/debug/libs.jar" level="project" />
     <orderEntry type="library" name="Gradle: io.flutter:armeabi_v7a_debug:1.0.0-e85ea0e79c6d894c120cda4ee8ee10fe6745e187" level="project" />
     <orderEntry type="library" name="Gradle: io.flutter:arm64_v8a_debug:1.0.0-e85ea0e79c6d894c120cda4ee8ee10fe6745e187" level="project" />

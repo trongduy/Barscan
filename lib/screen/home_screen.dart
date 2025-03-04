@@ -11,6 +11,7 @@ import '../helper/singleton_storage.dart';
 import '../widgets/widget.dart';
 import 'dialog_password.dart';
 import 'new_scan.dart';
+import '../helper/file/file_manager.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends GeneralScreen<HomeScreen> {
+  FileManager fileManager = FileManager();
 
   bool? permission = false;
   String url='';
@@ -85,7 +87,12 @@ class _HomeScreenState extends GeneralScreen<HomeScreen> {
         const SizedBox(
           height: 20,
         ),
+        _deleteFiles(),
+        const SizedBox(
+          height: 20,
+        ),
         _viewUpload()
+
       ],
     );
   }
@@ -139,6 +146,59 @@ class _HomeScreenState extends GeneralScreen<HomeScreen> {
         
       ],
     );
+  }
+
+  Widget _deleteFiles(){
+    return InkWell(
+      child: button(
+        const Text(
+          'Xoá Dữ Liệu',
+          style: TextStyle(fontSize: 15, color: Colors.white),
+        ),
+      ),
+      onTap: ()async{
+        bool bCheck=await _clearAll();
+        if(bCheck)
+        {
+            int iStatusDelete=await fileManager.deleteFile();
+            if(iStatusDelete==1)
+            {
+
+                await client!.deleteAllFileInFolder(configName).then((value) =>{
+                  if(value!=null){
+                    showMessage(value.message!)
+                  }else{
+                    showMessage('Có lỗi xẫy ra, vui lòng thử lại')
+                  }
+                });
+            }
+            else
+            {
+                showMessage('Xoá dữ thất bại!');
+            }
+        }
+      },
+    );
+  }
+  Future<bool> _clearAll() async {
+    return (await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Thông báo'),
+        content: const Text('Bạn có chắc xóa dữ liệu hiện tại không ?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Không'),
+          ),
+          TextButton(
+            onPressed: () async=> Navigator.of(context).pop(true),
+            child: const Text('Có'),
+          ),
+        ],
+      ),
+    )) ??
+        false;
   }
 
   _checkPermission() async {

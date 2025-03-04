@@ -1,4 +1,4 @@
-#Thu Jul 21 22:36:05 ICT 2022
+#Mon Mar 03 05:19:46 ICT 2025
 base.0=D\:\\Source\\CongViec\\Barscan\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

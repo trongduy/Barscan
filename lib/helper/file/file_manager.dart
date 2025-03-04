@@ -15,8 +15,20 @@ class FileManager{
     final path = await getFolders();
     return File('$path/$fileName.txt');
    // return File('$path/$fileName.png');
+  }
+  Future<int> deleteFile() async {
+
+    try {
+      final path = await getFolders();
+      final dir = Directory(path);
+      dir.deleteSync(recursive: true);
+      return 1;
+    } catch (e) {
+      return 0;
+    }
 
   }
+
   Future<void> writeFile(String filename,List<BarCodeModel> list) async {// todo add
     final file = await localFile(filename) ;
 
